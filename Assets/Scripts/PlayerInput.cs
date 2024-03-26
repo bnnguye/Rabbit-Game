@@ -55,5 +55,9 @@ public class PlayerInput : MonoBehaviour
                 }
             }
         }
+        if (Input.GetKeyDown(KeyCode.K) && (im.GetAllItems().Count > 0)) {
+            print("Using item");
+            im.UseItem();
+        }
     }
 }

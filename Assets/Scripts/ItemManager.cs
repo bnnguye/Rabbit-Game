@@ -5,6 +5,8 @@ public class ItemManager : MonoBehaviour
 {
     private static ItemManager instance;
 
+    private readonly List<Item> items = new();
+
     public static ItemManager Instance
     {
         get
@@ -23,9 +25,6 @@ public class ItemManager : MonoBehaviour
             return instance;
         }
     }
-
-    private List<Item> items = new List<Item>();
-
     public void AddItem(Item item)
     {
         items.Add(item);
@@ -38,10 +37,18 @@ public class ItemManager : MonoBehaviour
     public void RemoveItem(Item item)
     {
         items.Remove(item);
+        Destroy(item);
     }
 
     public List<Item> GetAllItems()
     {
         return items;
+    }
+
+    public void UseItem() {
+        if (items[0].Usable()) {
+        items[0].Use();
+        RemoveItem(items[0]);
+        }
     }
 }
